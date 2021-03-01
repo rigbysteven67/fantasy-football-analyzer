@@ -1,0 +1,45 @@
+html {
+    height: 100%;
+  }
+
+body {
+    background-color: rgb(159, 177, 159);
+}
+  
+.w-100 {
+    width: 100% !important;
+    height: 60vh;
+}
+  
+h1, h2, h3, h4, h5, p {
+    text-align: center;
+}
+
+#selDataset {
+    opacity: 0.5;
+}
+
+.dropdown {
+    text-align: center
+}
+
+.navbar-brand{
+    background-color:rgba(33,123,0,255)
+    
+}
+.navbar{
+    padding:0px;
+}
+.navbar-dark .navbar-nav .nav-link{
+      color:#f8f8f8;
+}
+.navbar-brand img{
+    max-height: 55px;
+    height:100%;
+    margin :0em 1em;
+}
+
+#myTable {
+    background-color: rgb(239, 242, 243);
+    color: black;
+  }

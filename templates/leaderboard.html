@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Fantasy Stats</title>
+
+        <!-- Bootstrap CSS and JavaScript CDN -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>   
+        
+        <!-- D3 CDN -->
+        <script src="https://d3js.org/d3.v6.min.js"></script>           
+
+        <!-- Plotly -->
+        <script src="https://cdn.plot.ly/plotly-latest.min.js" defer></script>    
+
+        <!-- MDBootstrap Plugin -->
+            <!-- MDBootstrap CSS  -->
+            <link href="{{url_for('static', filename='MDBootstrap/css/addons/datatables.min.css')}}" rel="stylesheet">
+
+            <!-- MDBootstrap JS  -->
+            <script type="text/javascript" src="{{url_for('static', filename='MDBootstrap/js/addons/datatables.min.js')}}"></script>
+
+        <!-- Custom CSS and JS -->
+        <link rel='stylesheet' href="{{ url_for('static', filename='css/style.css') }}"></link>
+        <script src="{{ url_for('static', filename='js/app.js') }}"defer></script>
+        
+        <!-- Favicon and Fonts -->
+            <!-- MDB icon -->
+            <link rel="icon" href="{{ url_for('static', filename='images/football.ico')}}" class="external" type="image/x-icon">
+        
+            <!-- Font Awesome -->
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" class="external">
+
+            <!-- Google Fonts Roboto -->
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" class="external">
+
+    </head>
+
+    <body>
+
+        <div class="container-fluid">
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top"> <!--- Start of NavBar -->
+                <a class="navbar-brand" href="/"><img src="static/images/home.png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"> <a class="nav-link" href="/player-comparison">Player Comparison</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="/leaderboard">Leaderboard</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="/machine-learning">Machine Learning</a> </li>
+                  </ul>
+                </div>
+              </nav> <!--- End of NavBar Container-->
+
+            
+
+            <!--leaderboard table-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>
+                        <br> Leaderboard
+                    </h3>
+
+                    <div class="row"> 
+                        <div class="col-md-12">
+                            <div class="dropdown">
+                                <h5>Season</h5>
+                                <!--YOU WILL NEED TO ADD AN onchange EVENT TO THE DROP DOWN! -->
+                                <select id="selDataset" onchange='optionChanged(this.value)' ></select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <table class='table table-striped table-hover' id='stats-table'>-->
+                        <!--<table id="myTable" class="display table table-striped table-hover searchable sortable" style="width:100%">-->
+                            <div id='table-div'>
+                            <table id="myTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+            
+                                <thead id='stats-thead'>    
+                                    <th>Season</th>
+                                    <th>Rank</th>
+                                    <th>Player</th>
+                                    <th>Team</th>
+                                    <th>Position</th>
+                                    <th>Total TDs</th>
+                                    <th>Total Yards</th>
+                                    <th>Avg Fantasy PPG</th>
+                                    <th>Total Fantasy Points</th>
+                                </thead>  
+                                <tbody id='stats-tbody'>
+                                </tbody>
+                            </div>
+                            </table>
+                </div>
+            </div> 
+
+        </div>
+    </body>
