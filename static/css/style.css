@@ -15,6 +15,11 @@ h1, h2, h3, h4, h5, p {
     text-align: center;
 }
 
+.jumbotron {
+    background-color: rgba(33,123,0,255); 
+    color: white;
+}
+
 #selDataset {
     opacity: 0.5;
 }
@@ -43,3 +48,12 @@ h1, h2, h3, h4, h5, p {
     background-color: rgb(239, 242, 243);
     color: black;
   }
+
+#imageBox {
+    max-height: 800px;
+    max-width: 350px;
+}
+
+.list-col {
+    text-align: center
+}

@@ -399,36 +399,86 @@ function optionChanged(newSample) {
 
 
 
+/**********************************/
+    // build comparison table
 
 
-// function myFunction() {
-//   var input, filter, table, tr, td, i;
-//   input = document.getElementById("myInput");
-//   filter = input.value.toUpperCase();
-//   table = document.getElementById("myTable");
-//   tr = table.getElementsByTagName("tr");
-//   for (i = 0; i < tr.length; i++) {.append
-//     td = tr[i].getElementsByTagName("td")[2];
-//     if (td) {
-//       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-//         tr[i].style.display = "";
-//       } else {
-//         tr[i].style.display = "none";
-//       }
-//     }
-//   }
-// }
+function playerComparison() {
+  
+    d3.json('/api/leaderboard').then(data => {
 
-// $(document).ready(function () {
+      console.log(data)
 
-//   // sleep for a few seconds before running the jQuery stuff
-//   setTimeout(() => {  
+      // assign form inputs to variable
 
-//     $('#myTable').DataTable();
-//     $('.dataTables_length').addClass('bs-select');
+      var player1 = document.getElementById("player1");
+      filter1 = player1.value.toUpperCase();
+      console.log(filter1);
 
-//     console.log('end wait');
-//    }, 5000);
-//    // refine this to have the app check every ~.5 seconds
+      var player2 = document.getElementById("player2");
+      filter2 = player2.value.toUpperCase();
+      console.log(filter2);
 
-// });
+      var year = document.getElementById("year");
+      filter3 = year.value;
+      console.log(filter3);
+  
+      // filter data based on player 1 and year inputs
+
+      var filtered_data = data.filter(d => (d['name'].toUpperCase() == filter1) && (d['season'] == filter3));
+      console.log(filtered_data)
+
+      // assign pos variable for img1
+
+      if (filtered_data[0]['pos'] == 'QB') {
+        var pos = 'qb'
+      }
+      else if (filtered_data[0]['pos'] == 'RB') {
+        var pos = 'rb'
+      }
+      else if (filtered_data[0]['pos'] == 'WR') {
+        var pos = 'wr'
+      }
+      else if (filtered_data[0]['pos'] == 'TE') {
+        var pos = 'te'
+      }
+
+      console.log(pos)
+
+      document.getElementById('img1').innerHTML = '<img src="static/images/' + pos + '.png" id="imageBox"/>';
+
+        // populate List
+
+
+      console.log(data)
+
+      // filter data based on player 2 and year inputs
+
+      var filtered_data2 = data.filter(d => (d['name'].toUpperCase() == filter2) && (d['season'] == filter3));
+      console.log(filtered_data2)
+
+      // assign pos variable for img2
+
+      if (filtered_data2[0]['pos'] == 'QB') {
+        var pos2 = 'qb'
+      }
+      else if (filtered_data2[0]['pos'] == 'RB') {
+        var pos2 = 'rb'
+      }
+      else if (filtered_data2[0]['pos'] == 'WR') {
+        var pos2 = 'wr'
+      }
+      else if (filtered_data2[0]['pos'] == 'TE') {
+        var pos2 = 'te'
+      }
+
+      console.log(pos2)
+
+      document.getElementById('img2').innerHTML = '<img src="static/images/' + pos2 + '.png" id="imageBox"/>';
+
+         // populate List
+     
+    });
+
+  };  
+
