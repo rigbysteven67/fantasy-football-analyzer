@@ -1,11 +1,11 @@
 /**********************************/
 // Initialize the visualizatio
 
-d3.json('/api/leaderboard').then(data => {
+d3.json('/api/data_table').then(data => {
     // grab a reference to the dropdown select element
     var selector = d3.select('#selDataset');
 
-    allYears = data.map(d => d['season']);
+    allYears = data.map(d => d['Season']);
 
     years = [...new Set(allYears)];
 
@@ -37,14 +37,14 @@ function buildCharts(season) {
     /**********************************/
     // build leaderboard table
 
-    d3.json('/api/leaderboard').then(data => {
+    d3.json('/api/data_table').then(data => {
       //var Tablehead = document.getElementById("stats-thead");
       //  Tablehead.innerHTML = "";
-      var Tablebody = document.getElementById("stats-tbody");
-        Tablebody.innerHTML = "";
+      var tbody = d3.select('#stats-tbody');
+      $('#stats-tbody').empty();
         
         //  apply filter for season value
-        data = data.filter(d => d['season'] == season);
+        data = data.filter(d => d['Season'] == season);
 
         // populate thead
         /* THIS IS HANDLED IN INDEX.HTML
@@ -59,7 +59,6 @@ function buildCharts(season) {
         data.forEach(stats => {
             
         // populate tbody
-            tbody = d3.select('#stats-tbody')
             var tr = tbody.append("tr");
                     
             Object.values(stats).forEach(value => {
@@ -405,7 +404,7 @@ function optionChanged(newSample) {
 
 function playerComparison() {
   
-    d3.json('/api/leaderboard').then(data => {
+    d3.json('/api/data_table').then(data => {
 
       console.log(data)
 
@@ -425,58 +424,85 @@ function playerComparison() {
   
       // filter data based on player 1 and year inputs
 
-      var filtered_data = data.filter(d => (d['name'].toUpperCase() == filter1) && (d['season'] == filter3));
+      var filtered_data = data.filter(d => (d['Name'].toUpperCase() == filter1) && (d['Season'] == filter3));
       console.log(filtered_data)
 
       // assign pos variable for img1
 
-      if (filtered_data[0]['pos'] == 'QB') {
+      if (filtered_data[0]['Position'] == 'QB') {
         var pos = 'qb'
       }
-      else if (filtered_data[0]['pos'] == 'RB') {
+      else if (filtered_data[0]['Position'] == 'RB') {
         var pos = 'rb'
       }
-      else if (filtered_data[0]['pos'] == 'WR') {
+      else if (filtered_data[0]['Position'] == 'WR') {
         var pos = 'wr'
       }
-      else if (filtered_data[0]['pos'] == 'TE') {
+      else if (filtered_data[0]['Position'] == 'TE') {
         var pos = 'te'
       }
 
       console.log(pos)
 
-      document.getElementById('img1').innerHTML = '<img src="static/images/' + pos + '.png" id="imageBox"/>';
+      document.getElementById('img1').innerHTML = '<img src="static/images/' + pos + '.png?anyValueHere" id="imageBox"/>';
 
-        // populate List
+      // populate categorylist  
+
+      categorylist = d3.select('#categorylist');
+      $('#categorylist').empty();
+
+        Object.keys(filtered_data[0]).forEach(key => {
+            var li = categorylist.append('li');
+            li.text(key);
+        });
+
+      // populate player1list
+
+      player1list = d3.select('#player1list');
+      $('#player1list').empty();
+
+        Object.values(filtered_data[0]).forEach(value => {
+            var li = player1list.append('li');
+            li.text(value);
+        });
+
 
 
       console.log(data)
 
       // filter data based on player 2 and year inputs
 
-      var filtered_data2 = data.filter(d => (d['name'].toUpperCase() == filter2) && (d['season'] == filter3));
+      var filtered_data2 = data.filter(d => (d['Name'].toUpperCase() == filter2) && (d['Season'] == filter3));
       console.log(filtered_data2)
 
       // assign pos variable for img2
 
-      if (filtered_data2[0]['pos'] == 'QB') {
+      if (filtered_data2[0]['Position'] == 'QB') {
         var pos2 = 'qb'
       }
-      else if (filtered_data2[0]['pos'] == 'RB') {
+      else if (filtered_data2[0]['Position'] == 'RB') {
         var pos2 = 'rb'
       }
-      else if (filtered_data2[0]['pos'] == 'WR') {
+      else if (filtered_data2[0]['Position'] == 'WR') {
         var pos2 = 'wr'
       }
-      else if (filtered_data2[0]['pos'] == 'TE') {
+      else if (filtered_data2[0]['Position'] == 'TE') {
         var pos2 = 'te'
       }
 
       console.log(pos2)
 
-      document.getElementById('img2').innerHTML = '<img src="static/images/' + pos2 + '.png" id="imageBox"/>';
+      document.getElementById('img2').innerHTML = '<img src="static/images/' + pos2 + '.png?anyValueHere" id="imageBox"/>';
 
-         // populate List
+        // populate player2list
+
+        player2list = d3.select('#player2list');
+        $('#player2list').empty();
+
+        Object.values(filtered_data2[0]).forEach(value => {
+            var li = player2list.append('li');
+            li.text(value);
+        });
      
     });
 

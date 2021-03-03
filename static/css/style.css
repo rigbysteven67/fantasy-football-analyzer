@@ -57,3 +57,23 @@ h1, h2, h3, h4, h5, p {
 .list-col {
     text-align: center
 }
+
+#player1list {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+  }
+
+#player2list {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+    }
+
+#categorylist { 
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+    font-weight: bold;
+    text-transform: uppercase;
+}

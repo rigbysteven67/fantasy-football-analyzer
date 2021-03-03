@@ -82,7 +82,28 @@ def leaderboard():
     leaderboard_json = leaderboard_data.to_json(orient='records')
 
     conn.close()
-    return leaderboard_json 
+    return leaderboard_json
+
+# set up the fantasy route
+@app.route('/api/data_table')
+def everything_table():
+
+    # Establish DB connection
+    conn = engine.connect()
+    
+    query = '''
+        SELECT
+	        *
+        FROM
+            everything_table
+        '''
+    
+    everything_table_data = pd.read_sql(query, con=conn)
+    everything_table_json = everything_table_data.to_json(orient='records')
+
+    conn.close()
+    return everything_table_json
+
 
 # set up the position rank route
 @app.route('/api/pos_rank')
