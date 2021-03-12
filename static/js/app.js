@@ -472,7 +472,7 @@ function playerComparison() {
 
       // filter data based on player 2 and year inputs
 
-      var filtered_data2 = data.filter(d => (d['Name'].toUpperCase() == filter2) && (d['Season'] == filter3));
+      var filtered_data2 = data.filter(d2 => (d2['Name'].toUpperCase() == filter2) && (d2['Season'] == filter3));
       console.log(filtered_data2)
 
       // assign pos variable for img2
