@@ -96,7 +96,7 @@ function buildCharts(season) {
             x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             y: data.map(d => d['Total FPTS']),
             mode: 'markers',
-            type: 'scatter',
+            type: 'bar',
             name: 'Team A',
             text: data.map(d => d['name']),
             marker: { size: 8 }
@@ -135,7 +135,7 @@ function buildCharts(season) {
             x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             y: data.map(d => d['Total FPTS']),
             mode: 'markers',
-            type: 'scatter',
+            type: 'bar',
             name: 'Team A',
             text: data.map(d => d['name']),
             marker: { size: 8 }
@@ -174,7 +174,7 @@ function buildCharts(season) {
             x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             y: data.map(d => d['Total FPTS']),
             mode: 'markers',
-            type: 'scatter',
+            type: 'bar',
             name: 'Team A',
             text: data.map(d => d['name']),
             marker: { size: 8 }
@@ -213,7 +213,7 @@ function buildCharts(season) {
             x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             y: data.map(d => d['Total FPTS']),
             mode: 'markers',
-            type: 'scatter',
+            type: 'bar',
             name: 'Team A',
             text: data.map(d => d['name']),
             marker: { size: 8 }

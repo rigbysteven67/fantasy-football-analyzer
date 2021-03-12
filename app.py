@@ -54,6 +54,11 @@ def home():
 def leaderboard_table():
     return render_template('leaderboard.html')
 
+# Set up the position comparison table route
+@app.route('/position-comparison')
+def position_comparison():
+    return render_template('position_comparison.html')
+
 # Set up the player comparison table route
 @app.route('/player-comparison')
 def player_comparison():
@@ -63,6 +68,11 @@ def player_comparison():
 @app.route('/machine-learning')
 def machine_learning():
     return render_template('machine_learning.html')
+
+# Set up the team info route
+@app.route('/team-info')
+def team_info():
+    return render_template('team_info.html')
 
 # set up the fantasy route
 @app.route('/api/leaderboard')
