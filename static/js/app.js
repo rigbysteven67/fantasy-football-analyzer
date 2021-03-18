@@ -508,3 +508,146 @@ function playerComparison() {
 
   };  
 
+
+
+  
+/**********************************/
+  // machine learning visualisations 
+
+function populate(pos) {
+
+    console.log(pos)
+
+    d3.json('/api/' + pos + '_analysis').then(data => {
+    
+      // document.getElementById('plt1').innerHTML = '<img src="static/images/' + pos + '_usage_per_game.png" id="imageBox"/>';
+      // document.getElementById('plt2').innerHTML = '<img src="static/images/' + pos + '_TD_per_usage.png" id="imageBox"/>';
+
+      console.log(data)
+
+      // build scatter plot for usage vs fpts
+      
+      var trace1 = {
+          x: data.map(d => d['Usage/Game']),
+          y: data.map(d => d['FantasyPoints/Game']),
+          mode: 'markers',
+          type: 'scatter',
+          name: 'Team A',
+          //text: data.map(d => d['name']),
+          marker: { size: 8 }
+        };
+        
+      var data2 = [trace1];
+        
+      var layout = {
+        xaxis: {
+          title: 'Usage Per Game',
+          //range: [ 0.75, 10.75 ]
+        },
+        yaxis: {
+          title: 'Fantasy Points Per Game',
+          //range: [80, 400]
+        },
+        title:'Usage Vs Total Fantasy Points',
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)'
+      };
+        
+        Plotly.newPlot('plt1', data2, layout);
+
+
+      // build scatter plot for efficiency vs fpts
+      
+      var trace1 = {
+        x: data.map(d => d['TD/Usage']),
+        y: data.map(d => d['FantasyPoints/Game']),
+        mode: 'markers',
+        type: 'scatter',
+        name: 'Team A',
+        //text: data.map(d => d['name']),
+        marker: { size: 8 }
+      };
+      
+      var data2 = [trace1];
+        
+      var layout = {
+        xaxis: {
+          title: 'Touchdowns Per Usage',
+          //range: [ 0.75, 10.75 ]
+        },
+        yaxis: {
+          title: 'Fantasy Points Per Game',
+          //range: [80, 400]
+        },
+        title:'Efficiency Vs Total Fantasy Points',
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)'
+      };
+        
+        Plotly.newPlot('plt2', data2, layout);
+
+
+      top10 = data.slice(0,10);
+
+      pos_analysis_list = d3.select('#pos_analysis_list');
+        $('#pos_analysis_list').empty();
+
+        top10.forEach(player => {
+
+          var pic = player['headshot_url']
+          var name = player['Player']
+          var usage_rank = player['UsageRank']
+          var fantasy_rank = player['FantasyPointsRank']
+          var fantasy_points = player['FantasyPoints']
+          var fantasy_prediction = player['FantasyPointPrediction']
+
+
+          console.log(pic)
+          console.log(name)
+          console.log(usage_rank)
+          console.log(fantasy_rank)
+          console.log(fantasy_points)
+          console.log(fantasy_prediction)
+
+          //document.getElementById('headshot').innerHTML = '<img href=pic id="imageBox"/>';
+          //document.querySelector(".headshot").src = pic;
+          //document.getElementById("headshot").src = pic;
+          
+        
+          
+          //document.getElementById('headshot1').innerHTML = '<img src=pic id="imageBox"/>';
+
+          //document.getElementById('player1').innerHTML = ('Player: ' + name);
+
+        //  <script type="text/template" id="myHtml">
+        //         <div class = 'row'>
+        //           <div class = 'col-md-2'>
+        //             <div 
+        //               id="headshot1">
+        //             </div>
+        //           </div>
+        //           <div class = 'col-md-3'>
+        //             <div id="player">
+        //               <h4> Player: {{ name }} </h4>
+        //               <h4> Usage Rank: {{ usage_rank }} </h4>
+        //               <h4> Fantasy Rank: {{ fantasy_rank }} </h4>
+        //               <h4> Fantasy Points: {{ fantasy_points }} </h4>
+        //               <h4> Fantasy Prediction: {{ fantasy_prediction }} </h4>
+        //             </div>
+        //           </div>
+        //         </div>
+        //   </script>
+
+        //   var myHtml = document.getElementById('myHtml').innerHTML;
+
+
+
+          
+
+        });
+
+    });
+
+};
+
+

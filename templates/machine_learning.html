@@ -58,11 +58,49 @@
                 </div>
               </nav> <!--- End of NavBar Container-->
 
-            <div class = 'row'>
-                <div class = 'col-md-12'>
-                    machine learning
+            <br>
+
+            <div class="button_cont" align="center">
+              
+              <button id="button" class="pos_button" onclick='populate("QB")' value="QB">QB</button>
+              <button id="button" class="pos_button" onclick='populate("RB")' value="RB">RB</button>
+              <button id="button" class="pos_button" onclick='populate("WR")' value="WR">WR</button>
+              <button id="button" class="pos_button" onclick='populate("TE")' value="TE">TE</button>
+
+            
+              <div class = 'row'>
+                <div class = 'col-md-6'>
+                  <div id="plt1"></div>
                 </div>
+                <div class = 'col-md-6'>
+                    <div id="plt2"></div>
+                </div>
+              </div>
+
+              <br>
+
+              <div class = 'row'>
+                <div class = 'col-md-2'>
+                  <div 
+                    id="headshot1">
+                  </div>
+                </div>
+                <div class = 'col-md-3'>
+                  <div 
+                    id="player">
+                    <h4> Player: {{ name }} </h4>
+                    <h4> Usage Rank: {{ usage_rank }} </h4>
+                    <h4> Fantasy Rank: {{ fantasy_rank }} </h4>
+                    <h4> Fantasy Points: {{ fantasy_points }} </h4>
+                    <h4> Fantasy Prediction: {{ fantasy_prediction }} </h4>
+                  </div>
+                </div>
+              </div>
+
             </div>
+
+
+            
 
         </div>
     </body>

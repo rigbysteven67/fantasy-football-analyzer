@@ -66,13 +66,93 @@ def player_comparison():
 
 # Set up the machine learning route
 @app.route('/machine-learning')
-def machine_learning():
-    return render_template('machine_learning.html')
+def machine_learning(name):
+    return render_template('machine_learning.html', name=name)
 
 # Set up the team info route
 @app.route('/team-info')
 def team_info():
     return render_template('team_info.html')
+
+# set up the RB_analysis route
+@app.route('/api/RB_analysis')
+def RB_analysis():
+
+    # Establish DB connection
+    conn = engine.connect()
+    
+    query = '''
+        SELECT
+	        *
+        FROM
+            rb_df_with_headshots
+        '''
+    
+    RB_analysis_data = pd.read_sql(query, con=conn)
+    RB_analysis_json = RB_analysis_data.to_json(orient='records')
+
+    conn.close()
+    return RB_analysis_json
+
+# set up the WR_analysis route
+@app.route('/api/WR_analysis')
+def WR_analysis():
+
+    # Establish DB connection
+    conn = engine.connect()
+    
+    query = '''
+        SELECT
+	        *
+        FROM
+            wr_df_with_headshots
+        '''
+    
+    WR_analysis_data = pd.read_sql(query, con=conn)
+    WR_analysis_json = WR_analysis_data.to_json(orient='records')
+
+    conn.close()
+    return WR_analysis_json
+
+# set up the TE_analysis route
+@app.route('/api/TE_analysis')
+def TE_analysis():
+
+    # Establish DB connection
+    conn = engine.connect()
+    
+    query = '''
+        SELECT
+	        *
+        FROM
+            te_df_with_headshots
+        '''
+    
+    TE_analysis_data = pd.read_sql(query, con=conn)
+    TE_analysis_json = TE_analysis_data.to_json(orient='records')
+
+    conn.close()
+    return TE_analysis_json
+
+# set up the QB_analysis route
+@app.route('/api/QB_analysis')
+def QB_analysis():
+
+    # Establish DB connection
+    conn = engine.connect()
+    
+    query = '''
+        SELECT
+	        *
+        FROM
+            qb_df_with_headshots
+        '''
+    
+    QB_analysis_data = pd.read_sql(query, con=conn)
+    QB_analysis_json = QB_analysis_data.to_json(orient='records')
+
+    conn.close()
+    return QB_analysis_json
 
 # set up the fantasy route
 @app.route('/api/leaderboard')
