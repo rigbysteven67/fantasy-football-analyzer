@@ -86,19 +86,19 @@ function buildCharts(season) {
     /**********************************/
     // build scatter plot for qb
 
-    d3.json('/api/pos_rank').then(data => {
+    d3.json('/api/data_table').then(data => {
         
         //  apply filter for season value
-        data = data.filter(d => d['season'] == season);
-        data = data.filter(d => d['pos'] == 'QB').slice(0,10);
+        data = data.filter(d => d['Season'] == season);
+        data = data.filter(d => d['Position'] == 'QB').slice(0,12);
 
         var trace1 = {
-            x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            y: data.map(d => d['Total FPTS']),
+            x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            y: data.map(d => d['Total Fantasy Points']),
             mode: 'markers',
             type: 'bar',
             name: 'Team A',
-            text: data.map(d => d['name']),
+            text: data.map(d => d['Name']),
             marker: { size: 8 }
           };
           
@@ -107,13 +107,13 @@ function buildCharts(season) {
           var layout = {
             xaxis: {
               title: 'Player Ranking',
-              range: [ 0.75, 10.75 ]
+              range: [ 0.75, 12.75 ]
             },
             yaxis: {
               title: 'Total Points',
               range: [80, 400]
             },
-            title:'FPTS for QB Rankings',
+            title:'Total Fantasy Points for QB Rankings',
             paper_bgcolor: 'rgba(0,0,0,0)',
             plot_bgcolor: 'rgba(0,0,0,0)'
           };
@@ -125,73 +125,73 @@ function buildCharts(season) {
      /**********************************/
     // build scatter plot for rb
 
-    d3.json('/api/pos_rank').then(data => {
+    d3.json('/api/data_table').then(data => {
         
-        //  apply filter for season value
-        data = data.filter(d => d['season'] == season);
-        data = data.filter(d => d['pos'] == 'RB').slice(0,10);
+      //  apply filter for season value
+      data = data.filter(d => d['Season'] == season);
+      data = data.filter(d => d['Position'] == 'RB').slice(0,30);
 
-        var trace1 = {
-            x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            y: data.map(d => d['Total FPTS']),
-            mode: 'markers',
-            type: 'bar',
-            name: 'Team A',
-            text: data.map(d => d['name']),
-            marker: { size: 8 }
-          };
-          
-        var data2 = [trace1];
-          
+      var trace1 = {
+          x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+          y: data.map(d => d['Total Fantasy Points']),
+          mode: 'markers',
+          type: 'bar',
+          name: 'Team A',
+          text: data.map(d => d['Name']),
+          marker: { size: 8 }
+        };
+        
+      var data2 = [trace1];
+        
         var layout = {
           xaxis: {
             title: 'Player Ranking',
-            range: [ 0.75, 10.75 ]
+            range: [ 0.75, 30.75 ]
           },
           yaxis: {
             title: 'Total Points',
             range: [80, 400]
           },
-          title:'FPTS for RB Rankings',
+          title:'Total Fantasy Points for RB Rankings',
           paper_bgcolor: 'rgba(0,0,0,0)',
           plot_bgcolor: 'rgba(0,0,0,0)'
         };
-          
-          Plotly.newPlot('rb_scatter', data2, layout);
+        
+        Plotly.newPlot('rb_scatter', data2, layout);
 
-    });
+  });
 
      /**********************************/
     // build scatter plot for wr
 
-    d3.json('/api/pos_rank').then(data => {
+    d3.json('/api/data_table').then(data => {
         
-        //  apply filter for season value
-        data = data.filter(d => d['season'] == season);
-        data = data.filter(d => d['pos'] == 'WR').slice(0,10);
+      //  apply filter for season value
+      data = data.filter(d => d['Season'] == season);
+      data = data.filter(d => d['Position'] == 'WR').slice(0,30);
+
+      var trace1 = {
+          x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+          y: data.map(d => d['Total Fantasy Points']),
+          mode: 'markers',
+          type: 'bar',
+          name: 'Team A',
+          text: data.map(d => d['Name']),
+          marker: { size: 8 }
+        };
         
-        var trace1 = {
-            x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            y: data.map(d => d['Total FPTS']),
-            mode: 'markers',
-            type: 'bar',
-            name: 'Team A',
-            text: data.map(d => d['name']),
-            marker: { size: 8 }
-          };
-          
-        var data2 = [trace1];
-          
+      var data2 = [trace1];
+        
         var layout = {
           xaxis: {
             title: 'Player Ranking',
-            range: [ 0.75, 10.75 ]
+            range: [ 0.75, 30.75 ]
           },
           yaxis: {
             title: 'Total Points',
             range: [80, 400]
           },
-          title:'FPTS for WR Rankings',
+          title:'Total Fantasy Points for WR Rankings',
           paper_bgcolor: 'rgba(0,0,0,0)',
           plot_bgcolor: 'rgba(0,0,0,0)'
         };
@@ -203,34 +203,34 @@ function buildCharts(season) {
      /**********************************/
     // build scatter plot for TE
 
-    d3.json('/api/pos_rank').then(data => {
+    d3.json('/api/data_table').then(data => {
         
-        //  apply filter for season value
-        data = data.filter(d => d['season'] == season);
-        data = data.filter(d => d['pos'] == 'TE').slice(0,10);
+      //  apply filter for season value
+      data = data.filter(d => d['Season'] == season);
+      data = data.filter(d => d['Position'] == 'TE').slice(0,30);
 
-        var trace1 = {
-            x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            y: data.map(d => d['Total FPTS']),
-            mode: 'markers',
-            type: 'bar',
-            name: 'Team A',
-            text: data.map(d => d['name']),
-            marker: { size: 8 }
-          };
-
-        var data2 = [trace1];
-          
+      var trace1 = {
+          x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+          y: data.map(d => d['Total Fantasy Points']),
+          mode: 'markers',
+          type: 'bar',
+          name: 'Team A',
+          text: data.map(d => d['Name']),
+          marker: { size: 8 }
+        };
+        
+      var data2 = [trace1];
+        
         var layout = {
           xaxis: {
             title: 'Player Ranking',
-            range: [ 0.75, 10.75 ]
+            range: [ 0.75, 12.75 ]
           },
           yaxis: {
             title: 'Total Points',
             range: [80, 400]
           },
-          title:'FPTS for TE Rankings',
+          title:'Total Fantasy Points for WR Rankings',
           paper_bgcolor: 'rgba(0,0,0,0)',
           plot_bgcolor: 'rgba(0,0,0,0)'
         };
@@ -403,6 +403,7 @@ function optionChanged(newSample) {
 
 
 function playerComparison() {
+
   
     d3.json('/api/data_table').then(data => {
 
@@ -418,14 +419,17 @@ function playerComparison() {
       filter2 = player2.value.toUpperCase();
       console.log(filter2);
 
-      var year = document.getElementById("year");
-      filter3 = year.value;
+      var year1 = document.getElementById("year1");
+      filter3 = year1.value;
       console.log(filter3);
+
+      var year2 = document.getElementById("year2");
+      filter4 = year2.value;
+      console.log(filter4);
   
-      // filter data based on player 1 and year inputs
+      // filter data based on player 1 and year 1 inputs
 
       var filtered_data = data.filter(d => (d['Name'].toUpperCase() == filter1) && (d['Season'] == filter3));
-      console.log(filtered_data)
 
       // assign pos variable for img1
 
@@ -442,38 +446,9 @@ function playerComparison() {
         var pos = 'te'
       }
 
-      console.log(pos)
-
-      document.getElementById('img1').innerHTML = '<img src="static/images/' + pos + '.png?anyValueHere" id="imageBox"/>';
-
-      // populate categorylist  
-
-      categorylist = d3.select('#categorylist');
-      $('#categorylist').empty();
-
-        Object.keys(filtered_data[0]).forEach(key => {
-            var li = categorylist.append('li');
-            li.text(key);
-        });
-
-      // populate player1list
-
-      player1list = d3.select('#player1list');
-      $('#player1list').empty();
-
-        Object.values(filtered_data[0]).forEach(value => {
-            var li = player1list.append('li');
-            li.text(value);
-        });
-
-
-
-      console.log(data)
-
       // filter data based on player 2 and year inputs
 
-      var filtered_data2 = data.filter(d2 => (d2['Name'].toUpperCase() == filter2) && (d2['Season'] == filter3));
-      console.log(filtered_data2)
+      var filtered_data2 = data.filter(d2 => (d2['Name'].toUpperCase() == filter2) && (d2['Season'] == filter4));
 
       // assign pos variable for img2
 
@@ -490,19 +465,72 @@ function playerComparison() {
         var pos2 = 'te'
       }
 
-      console.log(pos2)
 
-      document.getElementById('img2').innerHTML = '<img src="static/images/' + pos2 + '.png?anyValueHere" id="imageBox"/>';
+        // make comparison card
+        player_cards_div = d3.select('#player-comparison-cards');
+        player_cards_div.html('');
 
-        // populate player2list
+          img_div = player_cards_div.append('div');
+          img_div.attr('class', 'col-md-12');
 
-        player2list = d3.select('#player2list');
-        $('#player2list').empty();
+            card_div = img_div.append('div');
+            card_div.attr('class', 'card mb-3 bg-dark text-white card border-info');
 
-        Object.values(filtered_data2[0]).forEach(value => {
-            var li = player2list.append('li');
-            li.text(value);
-        });
+            //card_div.attr('style', 'max-width: 540px;');
+
+                card_row = card_div.append('div');
+                card_row.attr('class', 'row no-gutters');
+                card_row.attr('style', 'margin: 20px');
+
+                    img1_div = card_row.append('div');
+                    img1_div.attr('class', 'col-md-2');
+                    //img1_div.attr('style', 'display: table-cell; vertical-align: middle;');
+                    img1_div.attr('style', 'display: flex; align-items: center');
+
+                     img1_path = `/static/images/${pos}.png`
+
+                        img1 = img1_div.append('img');
+                        img1.attr('src', img1_path);
+                        img1.attr('alt', name);
+                        img1.attr('id', "imageBox");
+                        img1.attr('style', 'max-width: 100%; height: auto;');
+
+                    stats1_div = card_row.append('div');
+                    stats1_div.attr('class', 'col-md-2');
+                    stats1_div.attr('style', 'line-height: 60%');
+
+                        Object.values(filtered_data[0]).forEach(value => {
+                          stats1_div.append('p').text(value);
+                        });
+
+                    keys_div = card_row.append('div');
+                    keys_div.attr('class', 'col-md-4');
+                    keys_div.attr('style', 'line-height: 60%');
+
+                        Object.keys(filtered_data[0]).forEach(key => {
+                          keys_div.append('p').text(key);
+                        });
+
+                    stats2_div = card_row.append('div');
+                    stats2_div.attr('class', 'col-md-2');
+                    stats2_div.attr('style', 'line-height: 60%');
+
+                        Object.values(filtered_data2[0]).forEach(value => {
+                          stats2_div.append('p').text(value);
+                        });
+
+                    img2_div = card_row.append('div');
+                    img2_div.attr('class', 'col-md-2');
+                    img2_div.attr('style', 'display: flex; align-items: center');
+
+                        img2_path = `/static/images/${pos2}.png`
+
+                        img2 = img2_div.append('img');
+                        img2.attr('src', img2_path);
+                        img2.attr('alt', name);
+                        img2.attr('style', 'max-width: 100%; height: auto;');
+      
+                  
      
     });
 
@@ -518,12 +546,9 @@ function populate(pos) {
 
     console.log(pos)
 
-    d3.json('/api/' + pos + '_analysis').then(data => {
     
-      // document.getElementById('plt1').innerHTML = '<img src="static/images/' + pos + '_usage_per_game.png" id="imageBox"/>';
-      // document.getElementById('plt2').innerHTML = '<img src="static/images/' + pos + '_TD_per_usage.png" id="imageBox"/>';
 
-      console.log(data)
+    d3.json('/api/' + pos + '_analysis').then(data => {
 
       // build scatter plot for usage vs fpts
       
@@ -589,64 +614,55 @@ function populate(pos) {
 
       top10 = data.slice(0,10);
 
-      pos_analysis_list = d3.select('#pos_analysis_list');
-        $('#pos_analysis_list').empty();
 
-        top10.forEach(player => {
+      player_cards_div = d3.select('#player-cards');
+      player_cards_div.html('');
 
-          var pic = player['headshot_url']
-          var name = player['Player']
-          var usage_rank = player['UsageRank']
-          var fantasy_rank = player['FantasyPointsRank']
-          var fantasy_points = player['FantasyPoints']
-          var fantasy_prediction = player['FantasyPointPrediction']
+      top10.forEach(player => {
+
+        var pic = player['headshot_url'];
+        var name = player['Player'];
+        var usage_rank = player['UsageRank'];
+        var fantasy_rank = player['FantasyPointsRank'];
+        var fantasy_points = player['FantasyPoints'];
+        var fantasy_prediction = player['FantasyPointPrediction'];
+
+        headshot_div = player_cards_div.append('div');
+        headshot_div.attr('class', 'col-md-6');
+        //headshot_img = headshot_div.append('img');
+        //headshot_img.attr('src', pic);
 
 
-          console.log(pic)
-          console.log(name)
-          console.log(usage_rank)
-          console.log(fantasy_rank)
-          console.log(fantasy_points)
-          console.log(fantasy_prediction)
+        card_div = headshot_div.append('div');
+        card_div.attr('class', 'card mb-3 bg-dark text-white card border-info');
+        card_div.attr('style', 'max-width: 540px;');
 
-          //document.getElementById('headshot').innerHTML = '<img href=pic id="imageBox"/>';
-          //document.querySelector(".headshot").src = pic;
-          //document.getElementById("headshot").src = pic;
-          
+        card_row = card_div.append('div');
+        card_row.attr('class', 'row no-gutters');
+
+        headshot_div = card_row.append('div');
+        headshot_div.attr('class', 'col-md-4');
+
+        headshot_img = headshot_div.append('img');
+        headshot_img.attr('src', pic);
+        headshot_img.attr('alt', name);
+        headshot_img.attr('style', 'max-width: 100%; height: auto; position: absolute; bottom:0;');
+
+        stats_div = card_row.append('div');
+        stats_div.attr('class', 'col-md-8');
+
+        card_body_div = stats_div.append('div');
+        card_body_div.attr('class', 'card-body');
         
-          
-          //document.getElementById('headshot1').innerHTML = '<img src=pic id="imageBox"/>';
+        card_body_div.append('h5').text(name);
+        card_body_div.append('p').text(`Rank: ${usage_rank}`);
+        card_body_div.append('p').text(`Points: ${fantasy_points}`);
+        card_body_div.append('p').text(`Prediction: ${fantasy_prediction}`);
 
-          //document.getElementById('player1').innerHTML = ('Player: ' + name);
-
-        //  <script type="text/template" id="myHtml">
-        //         <div class = 'row'>
-        //           <div class = 'col-md-2'>
-        //             <div 
-        //               id="headshot1">
-        //             </div>
-        //           </div>
-        //           <div class = 'col-md-3'>
-        //             <div id="player">
-        //               <h4> Player: {{ name }} </h4>
-        //               <h4> Usage Rank: {{ usage_rank }} </h4>
-        //               <h4> Fantasy Rank: {{ fantasy_rank }} </h4>
-        //               <h4> Fantasy Points: {{ fantasy_points }} </h4>
-        //               <h4> Fantasy Prediction: {{ fantasy_prediction }} </h4>
-        //             </div>
-        //           </div>
-        //         </div>
-        //   </script>
-
-        //   var myHtml = document.getElementById('myHtml').innerHTML;
-
-
-
-          
-
-        });
+      });
 
     });
+
 
 };
 

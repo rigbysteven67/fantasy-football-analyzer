@@ -54,29 +54,8 @@ h1, h2, h3, h4, h5, p {
     max-width: 350px;
 }
 
-.list-col {
-    text-align: center
-}
 
-#player1list {
-    list-style-type: none; /* Remove bullets */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margins */
-  }
 
-#player2list {
-    list-style-type: none; /* Remove bullets */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margins */
-    }
-
-#categorylist { 
-    list-style-type: none; /* Remove bullets */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margins */
-    font-weight: bold;
-    text-transform: uppercase;
-}
 
 .pos_button {
     color: #fff !important;
@@ -108,3 +87,31 @@ h1, h2, h3, h4, h5, p {
     height: 500px;
     width: 600px;
 }
+
+
+img1_div {
+    position: absolute;
+    z-index: 15;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -150px;
+}
+
+.form
+{
+    display: block;
+    text-align: center;
+}
+form
+{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.active, .btn:hover {
+    color: rgb(0, 30, 255);
+}
+
+

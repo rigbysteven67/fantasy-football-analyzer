@@ -66,8 +66,10 @@ def player_comparison():
 
 # Set up the machine learning route
 @app.route('/machine-learning')
-def machine_learning(name):
-    return render_template('machine_learning.html', name=name)
+def machine_learning():
+
+
+    return render_template('machine_learning.html')
 
 # Set up the team info route
 @app.route('/team-info')
