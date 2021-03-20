@@ -681,12 +681,12 @@ function populate(pos) {
       table = d3.select('#predTable');
 
       // populate thead
-      thead = d3.select('#thead');
+      // thead = d3.select('#thead');
 
-      Object.keys(data[0]).forEach(key => {
-          var th = thead.append('th');
-          th.text(key);
-      });
+      // Object.keys(data[0]).forEach(key => {
+      //     var th = thead.append('th');
+      //     th.text(key);
+      // });
 
       data.forEach(stats => {
           
