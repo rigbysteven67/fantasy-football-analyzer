@@ -230,7 +230,7 @@ function buildCharts(season) {
             title: 'Total Points',
             range: [80, 400]
           },
-          title:'Total Fantasy Points for WR Rankings',
+          title:'Total Fantasy Points for TE Rankings',
           paper_bgcolor: 'rgba(0,0,0,0)',
           plot_bgcolor: 'rgba(0,0,0,0)'
         };
