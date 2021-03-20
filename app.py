@@ -72,9 +72,9 @@ def machine_learning():
     return render_template('machine_learning.html')
 
 # Set up the team info route
-@app.route('/team-info')
-def team_info():
-    return render_template('team_info.html')
+@app.route('/predictions')
+def predictions_route():
+    return render_template('predictions.html')
 
 # set up the RB_analysis route
 @app.route('/api/RB_analysis')
@@ -258,6 +258,28 @@ def num_of_pos_over_over_seasons():
 
     conn.close()
     return num_of_pos_over_over_seasons_json 
+
+
+# set up the prediction route
+@app.route('/api/predictions')
+def predictions():
+
+    # Establish DB connection
+    conn = engine.connect()
+    
+    query = '''
+        select 
+            *
+        from
+            2021_predictions
+        '''
+    
+    predictions_data = pd.read_sql(query, con=conn)
+    predictions_json = predictions_data.to_json(orient='records')
+
+    conn.close()
+    return predictions_json 
+
 
 
 if __name__ == "__main__":

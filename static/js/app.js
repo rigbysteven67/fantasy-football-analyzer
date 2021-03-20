@@ -612,7 +612,7 @@ function populate(pos) {
         Plotly.newPlot('plt2', data2, layout);
 
 
-      top10 = data.slice(0,10);
+      top10 = data.slice(0,20);
 
 
       player_cards_div = d3.select('#player-cards');
@@ -667,3 +667,51 @@ function populate(pos) {
 };
 
 
+    /**********************************/
+    // build table for predictions
+
+
+
+    d3.json('/api/predictions').then(data => {
+    
+      //  apply filter for season value
+      //data = data.filter(d => d['season'] == season);
+
+      // populate table
+      table = d3.select('#predTable');
+
+      // populate thead
+      thead = d3.select('#thead');
+
+      Object.keys(data[0]).forEach(key => {
+          var th = thead.append('th');
+          th.text(key);
+      });
+
+      data.forEach(stats => {
+          
+      // populate tbody
+          tbody = d3.select('#tbody')
+          var tr = tbody.append("tr");
+                  
+          Object.values(stats).forEach(value => {
+              var td = tr.append("td");
+              td.text(value);
+          });
+      });
+
+
+      
+
+
+
+    }); 
+
+
+
+/******* Activate the MDBootstrap thing */
+
+setTimeout(function(){
+  $('#predTable').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+}, 10000); 
