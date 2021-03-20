@@ -714,4 +714,4 @@ function populate(pos) {
 setTimeout(function(){
   $('#predTable').DataTable();
   $('.dataTables_length').addClass('bs-select');
-}, 10000); 
+}); 
